@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Borrower Name</th>
+            <th>Book Title</th>
+            <th>Borrowed Date</th>
+            <th>Return Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for borrower in borrowers %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ borrower.name }}</td>
+            <td>{{ borrower.book.title }}</td>
+            <td>{{ borrower.borrowed_date }}</td>
+            <td>{{ borrower.return_date|default:"Not Returned" }}</td>
+            <td>
+                <button class="btn btn-sm btn-warning" hx-get="{% url 'borrower_update' borrower.id %}" hx-target="#modal" hx-swap="innerHTML">Edit</button>
+                <button class="btn btn-sm btn-danger" hx-get="{% url 'borrower_delete' borrower.id %}" hx-target="#modal" hx-swap="innerHTML">Delete</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">No borrowers found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

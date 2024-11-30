@@ -1,0 +1,23 @@
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in authors %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ author.first_name }}</td>
+            <td>{{ author.last_name }}</td>
+            <td>
+                <button class="btn btn-sm btn-warning" hx-get="{% url 'author_update' author.id %}" hx-target="#modal" hx-swap="innerHTML">Edit</button>
+                <button class="btn btn-sm btn-danger" hx-get="{% url 'author_delete' author.id %}" hx-target="#modal" hx-swap="innerHTML">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

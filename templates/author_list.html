@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">Manage Authors</h1>
+<div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" hx-get="{% url 'author_create' %}" hx-target="#modal" hx-swap="innerHTML">Add Author</button>
+</div>
+<div id="author-list" hx-get="{% url 'author_list' %}" hx-trigger="load">
+    {% include 'partials/author_list.html' %}
+</div>
+<div id="modal"></div>
+{% endblock %}

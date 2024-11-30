@@ -1,0 +1,13 @@
+<div class="text-center">
+    <p>Are you sure you want to delete <strong>{{ borrower.name }}</strong>?</p>
+    <form method="post" hx-post="{% url 'borrower_delete' borrower.id %}" hx-target="#modal" hx-swap="innerHTML">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Yes, Delete</button>
+        <button type="button" class="btn btn-secondary" onclick="location.reload()">Cancel</button>
+    </form>
+    <script>
+        document.body.addEventListener('refreshPage', function () {
+            location.reload();  // Refresh the entire page
+        });
+    </script>
+</div>

@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.published_date }}</td>
+            <td>
+                <button class="btn btn-sm btn-warning" hx-get="{% url 'book_update' book.id %}" hx-target="#modal" hx-swap="innerHTML">Edit</button>
+                <button class="btn btn-sm btn-danger" hx-get="{% url 'book_delete' book.id %}" hx-target="#modal" hx-swap="innerHTML">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
